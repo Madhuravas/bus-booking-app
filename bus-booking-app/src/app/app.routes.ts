@@ -7,7 +7,7 @@ import { MyBookings } from './pages/my-bookings/my-bookings';
 export const routes: Routes = [
     {path:"", redirectTo:"search", pathMatch: "full"},
     {path:"search", component: Search},
-    {path:"search-result", component: SearchResult},
+    {path:"search-result/:fromId/:toId/:date", component: SearchResult},
     {path:"book-ticket", component: BookTicket},
     {path:"my-bookings", component: MyBookings}
 ];

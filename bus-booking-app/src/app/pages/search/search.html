@@ -3,33 +3,33 @@
     <div class="card bg-base-100 shrink-0 shadow-2xl">
       <div class="card-body bg-[#fef6f6] rounded-lg">
         <h1 class="font-semibold text-center text-2xl text-gray-700">
-          <i class="fa-solid fa-ticket"></i> Book your Ticket
+          <i class="fa-solid fa-ticket"></i> Book Your Bus Ticket
         </h1>
-        <div class="flex flex-row gap-2">
+        <div class="flex flex-row gap-4 mt-4">
           <div>
             <label for="fromAddress" class="label text-gray-600 font-medium block mb-2"
               ><i class="fa-solid fa-location-dot"></i>From</label
             >
-            <input
-              id="fromAddress"
-              type="text"
-              class="input outline-0 w-[250px]"
-              placeholder="Enter Source city"
-            />
+            <select id="fromAddress" class="input outline-0 w-[250px]" [(ngModel)]="searchObj.fromLocationId">
+              <option>Select from location</option>
+              @for (item of locations; track item.locationId){
+                <option [value]="item.locationId">{{item.locationName}}</option>
+              }
+            </select>
           </div>
           <div>
             <label for="toAddress" class="label text-gray-600 font-medium block mb-2"
               ><i class="fa-solid fa-location-dot"></i>To</label
             >
-            <input
-              id="toAddress"
-              type="text"
-              class="input outline-0 w-[250px]"
-              placeholder="Enter destination city"
-            />
+             <select id="toAddress" name="toLocationId" class="input outline-0 w-[250px]" [(ngModel)]="searchObj.toLocationId">
+              <option>Select to location</option>
+              @for (item of locations; track item.locationId){
+                <option [value]="item.locationId">{{item.locationName}}</option>
+              }
+            </select>
           </div>
         </div>
-        <div class="w-[250px]">
+        <div class="w-[250px] mt-4">
           <label for="travelDate" class="label text-gray-600 font-medium block mb-2"
             ><i class="fa-solid fa-calendar-days"></i>Date of Journey</label
           >
@@ -38,10 +38,11 @@
             type="date"
             class="input outline-0 w-full"
             placeholder="Select Date of Travel"
+            [(ngModel)]="searchObj.date"
           />
         </div>
         <div class="flex flex-col items-center">
-          <button class="flex items-center btn bg-[#2a59c5] text-[#ffffff] w-[40%] mt-4 p-6 rounded-lg text-[16px]"><i class="fa-solid fa-magnifying-glass-plus"></i> Search Buses</button>
+          <button (click)="searchBuses()" class="flex items-center btn bg-[#2a59c5] text-[#ffffff] w-[40%] mt-4 p-6 rounded-lg text-[16px]"><i class="fa-solid fa-magnifying-glass-plus"></i> Search Buses</button>
         </div>
       </div>
     </div>
